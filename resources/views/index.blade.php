@@ -26,14 +26,36 @@
                             </div>
                         </div>
                         <div class="row justify-content-center bg-light mb-3">
-                            <div id="fetch-data">
-                                
+                            @if (session()->has('login'))
+                            <div class="justify-content-center pt-2">
+                                <div class="alert alert-success alert-dismissible fade show justify-content-center px-4 pt-2" role="alert">
+                                   {{ session('login') }} {{ auth()->user()->name }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
                             </div>
+                            @endif
+                            @auth
+                            <div id="fetch-data">                                
+                            </div>
+                            @else
+                            <h4 class="text-center p-4">Silahkan Login Untuk Melihat Data!</h4>
+                            @endauth
                             <div class="col-12">                                
                                 <div class="row justify-content-center">
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-info p-3 shadow rounded-3 col-12 my-3 " style="color:aliceblue; background-color: #30AEE4;" onClick="create()" >Tambah</button>
-                                    </div>
+                                        @auth
+                                        <button type="button" class="btn btn-info p-3 shadow rounded-3 col-12 my-2 " style="color:aliceblue; background-color: #30AEE4;" onClick="create()" >Tambah</button>
+                                        <form action="/logout" method="POST">
+                                        @csrf
+                                            <button type="submit" class="btn btn-info p-3 shadow rounded-3 col-12 my-2 " style="color:aliceblue; background-color: #30AEE4;">Logout   
+                                            </button>
+                                        </form>
+                                        @else
+                                        <form action="/login" method="get">
+                                            <button type="submit" class="btn btn-info p-3 shadow rounded-3 col-12 my-2 " style="color:aliceblue; background-color: #30AEE4;">Login</div>
+                                        </form>
+                                        @endauth
+                                    
                                 </div>
                             </div>
                         </div>
