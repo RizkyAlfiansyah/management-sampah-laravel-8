@@ -21,8 +21,7 @@
             </div>
             @endif
             @auth
-            <div id="fetch-data">                                
-            </div>
+            <div id="fetch-data"></div>
             @else
             <h4 class="text-center p-4">Silahkan Login Untuk Melihat Data!</h4>
             @endauth

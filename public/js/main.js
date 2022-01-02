@@ -4,19 +4,21 @@ $(document).ready(function() {
 
 //Read Data
 function read() {
-    $.get("{{url('read')}}", {}, function(data, status){
+
+    $.get( "/read", {}, function(data, status){
         $("#fetch-data").html(data);
     });
 }
 
 // Create Modal
 function create() {
-    $.get("{{url('create')}}", {}, function(data, status){
+    $.get("/create", {}, function(data, status){
         $("#exampleModalLabel").html('Input Data');
         $("#input").html(data);
         $("#addModal").modal('show');
     });
 }
+
 
 //Create Data
 function store() {
@@ -24,7 +26,7 @@ function store() {
     var type = $("#type").val();
     $.ajax({
         type: "GET",
-        url: "{{ url('store') }}",
+        url: "/store",
         data: "name=" + name + "&type=" + type,
         success:function(data){
             $(".btn-close").click();
@@ -36,7 +38,7 @@ function store() {
 
 // edit data Modal
 function show(id) {
-    $.get("{{ url('show') }}/" +id, {}, function(data, status){
+    $.get("/show/" +id, {}, function(data, status){
         $("#exampleModalLabel").html('Edit Data');
         $("#input").html(data);
         $("#addModal").modal('show');
@@ -49,7 +51,7 @@ function update(id) {
     var type = $("#type").val();
     $.ajax({
         type: "GET",
-        url: "{{ url('update') }}/" +id,
+        url: "/update/" +id,
         data: "name=" + name + "&type=" + type,
         success:function(data){
             $(".btn-close").click();
@@ -66,7 +68,7 @@ function destroy(id) {
     var type = $("#type").val();
     $.ajax({
         type: "GET",
-        url: "{{ url('destroy') }}/" +id,
+        url: "/destroy/" +id,
         data: "name=" + name + "&type=" + type,
         success:function(data){
             $(".btn-close").click();
