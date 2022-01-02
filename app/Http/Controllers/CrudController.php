@@ -14,7 +14,9 @@ class CrudController extends Controller
      */
     public function index()
     {
-        return view('index');
+        return view('index', [
+            'title' => 'Data Sampah'
+        ]);
     }
     
     public function read()
