@@ -63,17 +63,25 @@ function update(id) {
 
 //Delete Data
 function destroy(id) {
-    confirm("Apakah Anda Yakin Ingin Menghapus Data Ini ?");
-    var name = $("#name").val();
-    var type = $("#type").val();
-    $.ajax({
-        type: "GET",
-        url: "/destroy/" +id,
-        data: "name=" + name + "&type=" + type,
-        success:function(data){
-            $(".btn-close").click();
-            read();
-            alert("Data Berhasil Dihapus !");
-        }
-    });
+
+    var answer = window.confirm("Apakah Anda Yakin Ingin Menghapus Data Ini ?");
+
+    if (answer){
+        var name = $("#name").val();
+        var type = $("#type").val();
+        $.ajax({
+            type: "GET",
+            url: "/destroy/" +id,
+            data: "name=" + name + "&type=" + type,
+            success:function(data){
+                $(".btn-close").click();
+                read();
+                alert("Data Berhasil Dihapus !");
+            }
+        });
+    } else{
+        alert("Data Gagal Dihapus !");
+        $(".btn-close").click();
+        read();
+    }
 }
